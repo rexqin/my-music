@@ -1,0 +1,47 @@
+# 凭据 / 登录态 —— 严禁提交
+authorized_tokens.json
+*.token
+.env
+.env.*
+secrets.json
+
+# 本地生成的歌单导出（按需保留：想分享就删掉下面这段）
+滑雪-*.json
+滑雪-*.csv
+*.m3u
+
+# 下载落点：版权音乐仅留本机，不入库
+downloads/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# 构建产物
+dist/
+build/
+out/
+
+# 日志
+*.log
+logs/
+
+# 编辑器 / 系统
+.vscode/*
+!.vscode/settings.json
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 临时文件
+*.tmp
+*.bak

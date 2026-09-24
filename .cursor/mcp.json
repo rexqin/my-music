@@ -1,0 +1,49 @@
+{
+  "mcpServers": {
+    "navidrome": {
+      "command": "cmd",
+      "args": ["/c", "npx", "-y", "navidrome-mcp"]
+    },
+    "qqmusic-mcp": {
+      "command": "C:\\Users\\PC\\.local\\bin\\qqmusic-mcp.exe",
+      "args": ["stdio"]
+    },
+    "foo_ai": {
+      "command": "cmd",
+      "args": [
+        "/c",
+        "npx",
+        "-y",
+        "mcp-remote",
+        "http://localhost:9910/sse",
+        "--transport",
+        "sse-only"
+      ]
+    },
+    "fileclaw": {
+      "command": "cmd",
+      "args": [
+        "/c",
+        "C:\\Users\\PC\\scoop\\persist\\nvm\\nodejs\\v24.21.0\\fileclaw.cmd",
+        "--mcp"
+      ]
+    },
+    "fleapit": {
+      "command": "cmd",
+      "args": [
+        "/c",
+        "C:\\Users\\PC\\scoop\\persist\\nvm\\nodejs\\v24.21.0\\fleapit.cmd"
+      ]
+    },
+    "torrent-search-mcp": {
+      "command": "cmd",
+      "args": ["/c", "uvx", "--from", "torrent-search-mcp", "torrent-search-mcp"]
+    },
+    "fluxdown": {
+      "url": "http://127.0.0.1:17800/mcp",
+      "headers": {
+        "Authorization": "Bearer ${env:FLUXDOWN_TOKEN}"
+      }
+    }
+  }
+}
