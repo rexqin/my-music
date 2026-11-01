@@ -1,9 +1,5 @@
 {
   "mcpServers": {
-    "navidrome": {
-      "command": "cmd",
-      "args": ["/c", "npx", "-y", "navidrome-mcp"]
-    },
     "qqmusic-mcp": {
       "command": "C:\\Users\\PC\\.local\\bin\\qqmusic-mcp.exe",
       "args": ["stdio"]

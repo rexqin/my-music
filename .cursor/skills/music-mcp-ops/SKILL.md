@@ -2,8 +2,8 @@
 name: music-mcp-ops
 description: >-
   Install, configure, and health-check the music MCP servers in this project on
-  Windows: qqmusic-mcp (QQ Music library read/write), navidrome (self-hosted
-  library over the Subsonic API), foo_ai (foobar2000 playback control), fleapit
+  Windows: qqmusic-mcp (QQ Music library read/write), foo_ai (foobar2000 playback
+  control), fleapit
   and torrent-search-mcp (release metadata search), and fluxdown (downloads).
   Covers installing the foobar2000 player and its MCP component, editing
   .cursor/mcp.json, and verifying each server actually connects and lists its
@@ -23,7 +23,7 @@ the full list and the skill that drives each one.
 ## Ground rules
 
 - This project manages the user's **own accounts, own library, and its own downloads directory**. It searches release metadata and stages downloads into `downloads/` — it does not host, seed, or redistribute anything. See the `music-metadata-search` skill for the search/download flow.
-- **Supported services are an allowlist:** `qqmusic-mcp`, `navidrome`, `foo_ai` (library and playback), `fleapit`, `torrent-search-mcp` (release metadata search), `fluxdown` (downloads). The verifier probes only these and reports anything else in `mcp.json` as `SKIP`. Adding a service means extending the allowlist in both this skill and `scripts/verify-mcp.ps1`.
+- **Supported services are an allowlist:** `qqmusic-mcp`, `foo_ai` (library and playback), `fleapit`, `torrent-search-mcp` (release metadata search), `fluxdown` (downloads). The verifier probes only these and reports anything else in `mcp.json` as `SKIP`. Adding a service means extending the allowlist in both this skill and `scripts/verify-mcp.ps1`.
 - `authorized_tokens.json` holds live login sessions. It is gitignored — never commit it, never print its contents, never paste tokens into chat.
 - The FluxDown bearer token lives in `.cursor/mcp.json` under the `fluxdown` server's `headers`. Read it from there when a raw API call is needed; never echo it anywhere.
 - Project-scoped servers require manual approval in Cursor **Settings > MCP**. A server that is configured but "disconnected" is often just unapproved, not broken.
@@ -34,7 +34,6 @@ the full list and the skill that drives each one.
 | Service | Transport | Purpose | Owning skill |
 |---|---|---|---|
 | `qqmusic-mcp` | stdio | QQ Music library read/write (playlists, lyrics, analysis) | — |
-| `navidrome` | stdio | Self-hosted library search via Subsonic API | — |
 | `foo_ai` | SSE, bridged to stdio | foobar2000 playback control | `music-download-pipeline` (library sync) |
 | `fleapit` | stdio | Nyaa release metadata search (music under `category: anime`) | `music-metadata-search` |
 | `torrent-search-mcp` | stdio | Multi-source release metadata search | `music-metadata-search` |

@@ -107,8 +107,7 @@ conflict, not a bad file — see [reference.md](reference.md#why-files-stay-lock
 
 ### Stage 3: Sync the media library
 
-The media library here is **foobar2000**, not Navidrome (Navidrome is unconfigured and only
-exposes setup tools). foobar2000 watches the project downloads dir directly.
+The media library here is **foobar2000** via `foo_ai`. foobar2000 watches the project downloads dir directly.
 
 1. Compare counts. The library exposes its index through `foo_ai`'s `list_library`; the
    script counts disk files:

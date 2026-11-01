@@ -41,7 +41,6 @@ See [`.cursor/mcp.json`](.cursor/mcp.json) for the configuration.
 | 服务 / Service | 类型 / Type | 用途 / Purpose | 说明 / Notes |
 |---|---|---|---|
 | `qqmusic-mcp` | stdio | QQ 音乐音乐库管理 / QQ Music library management | 读取歌单/歌词、歌单分析、账号级歌单写入（写前有探针保护，支持按 `run_id` 回滚） / Read playlists & lyrics, analyze playlists, account-level playlist writes (probe guard before writing, rollback by `run_id`) |
-| `navidrome` | stdio | 本地音乐库检索 / Local library search | 通过 Navidrome 的 Subsonic API 搜索、编排自建音乐库 / Search and organize a self-hosted library via Navidrome's Subsonic API |
 | `foo_ai` | SSE | foobar2000 播放控制 / foobar2000 playback control | 播放/暂停、切歌、音量、歌单与媒体库的读写 / Play/pause, track switching, volume, playlist and media library read/write |
 | `fleapit` | stdio | Nyaa 发布检索 / Nyaa release search | 音乐资源在 `category: "anime"` 下（Nyaa 的分类如此），结果自带磁力链 / Music lives under `category: "anime"` (Nyaa's own grouping) and results carry magnet links |
 | `torrent-search-mcp` | stdio | 多源发布检索 / Multi-source release search | The Pirate Bay / 1337x / Nyaa / uindex 等；返回 Python repr 而非 JSON，磁力链需另调 `get_torrent` / Returns Python reprs rather than JSON; magnets need a separate `get_torrent` call |
@@ -62,12 +61,6 @@ qqmusic-mcp doctor --client cursor # 自检 / self-check
 用的是 QQ 音乐的非官方接口，上游改版可能导致失效。写操作前会先用临时歌单跑一次探针，探针不过则禁用全部写工具。
 
 It uses QQ Music's unofficial API, so upstream changes may break it. Before any write it runs a probe against a temporary playlist; if the probe fails, all write tools are disabled.
-
-### navidrome
-
-需要一台自行运行的 Navidrome 服务器（默认端口 4533）。首次启动会打开本地设置页填写服务器地址与账号。
-
-Requires a Navidrome server you run yourself (default port 4533). On first launch it opens a local settings page for the server address and credentials.
 
 ### foo_ai（foobar2000）
 

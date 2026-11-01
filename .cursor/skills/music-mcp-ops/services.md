@@ -63,42 +63,6 @@ new shell or use the full executable path.
 | Write tools unavailable | Write probe failed | Expected defensive behaviour; upstream API may have changed |
 | `Event loop is closed` on first tool call | Transient startup race | Retry the call once |
 
-## navidrome
-
-Reads and curates a self-hosted Navidrome library through its Subsonic-compatible API:
-search, playlist read/write, ratings, library browsing. Requires an existing Navidrome server.
-
-### Install and configure
-
-```json
-{
-  "navidrome": {
-    "command": "cmd",
-    "args": ["/c", "npx", "-y", "navidrome-mcp"]
-  }
-}
-```
-
-Credentials are **not** stored in `mcp.json`. On first run the server opens a local settings
-page; the user fills in the Navidrome URL, username and password, tests the connection, and
-saves. Settings persist in the OS config directory and load at startup only — restart the
-server after changing them. Reopen the settings page any time with `npx navidrome-config`.
-
-### Verify
-
-The server cannot be healthy without a reachable Navidrome instance and saved settings. A
-stdio handshake that lists tools proves the server starts; it does not prove the upstream
-library is reachable. Confirm the Navidrome server itself is up (default port 4533) and that
-the settings page saved successfully.
-
-### Troubleshooting
-
-| Symptom | Cause | Fix |
-|---|---|---|
-| Server starts but tools fail | No/invalid Navidrome credentials | Reopen `npx navidrome-config`, test connection, save |
-| Cannot reach library | Navidrome server not running | Start the Navidrome instance (default port 4533) |
-| Settings changes ignored | Settings load at startup | Restart the MCP server |
-
 ## foo_ai / foobar2000
 
 [foo_ai](https://github.com/Bobini1/foo_ai) is a native foobar2000 component that runs an MCP
@@ -191,6 +155,3 @@ Both must hold. Then confirm transport shape: `GET http://localhost:9910/sse` re
 | `WARN` | Process works but is not usable yet (e.g. unconfigured credentials) |
 | `FAIL` | Probed and broken; the detail names the failing stage |
 | `SKIP` | Present in `mcp.json` but outside this project's supported allowlist |
-
-`WARN` for `navidrome` is normal until the settings page has been filled in: the server
-starts in setup mode and only exposes `open_settings` / `test_connection`.

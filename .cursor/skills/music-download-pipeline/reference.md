@@ -79,8 +79,7 @@ Removing the task from the list releases the handle. Keep the data: `deleteFiles
 
 ## Media library (foobar2000)
 
-Navidrome is **not** the media library here — its MCP server is unconfigured and exposes only
-`open_settings` / `test_connection`.
+The media library here is **foobar2000** via `foo_ai`.
 
 foobar2000 storage, for a scoop portable install:
 

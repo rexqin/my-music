@@ -34,7 +34,7 @@
 [CmdletBinding()]
 param(
     [string]$ProjectRoot,
-    [ValidateSet('qqmusic-mcp', 'navidrome', 'foo_ai', 'fleapit', 'torrent-search-mcp', 'fluxdown', '')]
+    [ValidateSet('qqmusic-mcp', 'foo_ai', 'fleapit', 'torrent-search-mcp', 'fluxdown', '')]
     [string]$Server = '',
     [int]$TimeoutMs = 90000
 )
@@ -43,10 +43,10 @@ $ErrorActionPreference = 'Continue'
 $ProbeMarker = 'PROBE_RESULT '
 
 # Services this project's skills drive. Anything else in the config is out of scope.
-#   library / playback : qqmusic-mcp, navidrome, foo_ai
+#   library / playback : qqmusic-mcp, foo_ai
 #   metadata search    : fleapit, torrent-search-mcp
 #   downloads          : fluxdown
-$SupportedServices = @('qqmusic-mcp', 'navidrome', 'foo_ai', 'fleapit', 'torrent-search-mcp', 'fluxdown')
+$SupportedServices = @('qqmusic-mcp', 'foo_ai', 'fleapit', 'torrent-search-mcp', 'fluxdown')
 
 if (-not $ProjectRoot) {
     # scripts/ -> music-mcp-ops/ -> skills/ -> .cursor/ -> project root
@@ -202,8 +202,8 @@ if ($null -ne $servers) {
                         $version = if ($payload.serverInfo) { "$($payload.serverInfo.name) v$($payload.serverInfo.version)" } else { 'unknown' }
                         $unconfigured = $payload.stderrTail -match '(?i)(not configured|awaiting configuration|setup mode)'
                         if ($unconfigured) {
-                            # e.g. navidrome-mcp starts in setup mode and only exposes
-                            # open_settings / test_connection until credentials are saved.
+                            # Some MCP servers start in setup mode and only expose
+                            # configuration tools until credentials are saved.
                             Add-Row "probe: $name" 'WARN' ("starts OK ({0}) but reports unconfigured; configure it before use" -f $version)
                         } else {
                             Add-Row "probe: $name" 'PASS' ("handshake OK; {0}; {1} tools" -f $version, $payload.toolCount)
